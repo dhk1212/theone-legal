@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>0.1 — 초대</title>
+<meta property="og:title" content="0.1 — One Person">
+<meta property="og:description" content="당신을 초대합니다. 같이 할래?">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;color:#fff;font-family:-apple-system,"Apple SD Gothic Neo",system-ui,sans-serif;
+     min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+.card{width:100%;max-width:340px;text-align:center}
+img{width:84px;height:84px}
+.inv{font-size:15px;color:#9a9a9a;margin-top:22px}
+.one{font-size:36px;font-weight:600;margin-top:12px}
+.ask{font-size:18px;color:#cfcfcf;margin-top:14px}
+.box{border:1px dashed #333;border-radius:12px;padding:14px;margin-top:26px}
+.lab{font-size:9px;letter-spacing:2.4px;color:#7a7a7a}
+.code{font-size:26px;font-weight:600;letter-spacing:6px;margin-top:8px}
+a.btn{display:block;background:#fff;color:#000;border-radius:999px;padding:14px;margin-top:14px;
+      font-size:13px;font-weight:600;text-decoration:none}
+a.ghost{background:none;border:1px solid #333;color:#ddd}
+.note{font-size:11px;color:#6a6a6a;margin-top:16px;line-height:17px}
+</style></head>
+<body><div class="card">
+  <img src="icon.png" alt="0.1">
+  <div class="inv">당신을 초대합니다</div>
+  <div class="one">One Person</div>
+  <div class="ask">같이 할래?</div>
+  <div class="box"><div class="lab">초대 코드</div><div class="code" id="code">------</div></div>
+  <a class="btn" id="store">앱 받기</a>
+  <a class="btn ghost" id="open">앱에서 열기</a>
+  <div class="note">앱을 열고 티켓 화면에서 코드를 넣으면<br>두 분 모두 티켓 한 장을 받습니다.</div>
+</div>
+<script>
+var PLAY = 'https://play.google.com/store/apps/details?id=com.kommode.pointone';
+var APPSTORE = 'https://apps.apple.com/app/id0000000000';   // iOS 출시 후 실제 ID로 교체
+var code = (new URLSearchParams(location.search).get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6);
+if (code) document.getElementById('code').textContent = code;
+var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+document.getElementById('store').href = ios ? APPSTORE : PLAY;
+document.getElementById('open').href = 'pointone://i/' + code;
+</script>
+</body></html>
